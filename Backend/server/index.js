@@ -433,8 +433,9 @@ const fs = require("fs");
 const pdf = require("pdf-parse/lib/pdf-parse.js");
 const { log } = require("console");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+require("dotenv").config();
 const app = express();
-const genAI = new GoogleGenerativeAI('AIzaSyDB9kdZ9AUI6Dg8CiZcPm9d44pAoDL2j6g');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.use(cors());
 app.use(express.json());
 
@@ -460,9 +461,9 @@ app.post("/upload", upload.single("resume"), async (req, res) => {
     const data = await pdf(dataBuffer);
 
     const resumeText = data.text.toLowerCase();
-         console.log(req.body.jobDesc,"jobdesc");
+        //  console.log(req.body.jobDesc,"jobdesc");
     const jobDesc = req.body.jobDesc ? req.body.jobDesc.toLowerCase() : "";
-     const GEMINI_API_KEY=""
+
 //         async function getAISuggestions(resumeText, jobDesc) {
 //   try {
 //     const response = await fetch(
@@ -560,7 +561,7 @@ async function getAISuggestions(resumeText, jobDesc) {
 
 Compare this resume and job description.
 
-Give me required improvement suggestions in bullet points only Short and clean.
+Give me 3 improvement suggestions in bullet points only Short and clean.
 
 
 Resume:
