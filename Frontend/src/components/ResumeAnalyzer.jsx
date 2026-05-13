@@ -1,18 +1,21 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Score from "./Score.jsx";
 import axios from "axios";
 import { Link } from "react-router";
+import themeContext from "./ThemeContext.jsx";
+
 export default function ResumeAnalyzer() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [jobDesc, setJobDesc] = useState("");
-  const [mode,setMode] = useState(1)
+  // const [mode,setMode] = useState(1)
   // const handleAnalyze = () => {
   // setLoading(true);
-  console.log("result", result);
-
+  // console.log("result", result);
+   const theme = useContext(themeContext)
+   const mode =theme.mode;
   const handleAnalyze = async () => {
     if (!file) return;
 
@@ -26,7 +29,7 @@ export default function ResumeAnalyzer() {
       console.log("sahi he");
 
       const res = await axios.post("http://localhost:5000/upload", formData);
-      console.log("ab bhi");
+     
 
       // backend response set karo
       setResult({
@@ -46,10 +49,15 @@ export default function ResumeAnalyzer() {
     setLoading(false);
   };
   // };
+console.log("mode",mode);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-900 to-gray-800 flex flex-col items-center shadow pt-0 text-white">
+    <div className={`min-h-screen ${mode?"bg-linear-to-br from-gray-900 to-gray-800":"bg-linear-to-br from-purple-600/10 to-blue-600/10 "}  flex flex-col items-center shadow pt-0 text-white`}>
       {/* Title */}
+      {
+        console.log(mode,"mode is")
+        
+      }
       {/* <motion.h1
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,21 +66,14 @@ export default function ResumeAnalyzer() {
       >
         🚀 Smart Resume Analyzer
       </motion.h1> */}
-      <nav className="flex justify-between p-4 w-full bg-linear-to-r from-blue-600/10 to-purple-600/10">
-        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600 font-serif"><span className="text-white">🤖</span>ResumeAnalyzer</h2>
-        <div className="flex justify-between gap-4 text-purple-400 text-mono">
-          <Link to={"/History"} className="shadow p-2 rounded hover:bg-gray-800 font-serif "> History</Link>
-          <Link to={"/signup"} className="shadow p-2 rounded hover:bg-gray-800 font-serif ">Signup</Link>
-          <button className="shadow p-2 rounded hover:bg-gray-800 font-serif " onClick={()=>setMode(!mode)}>{mode?<span className=" text-white text-xl px-1" >☾</span>:<span>🔆</span>}</button>
-        </div>
-      </nav>
+  
       {/* Upload Box */}
       {/* bg-linear-to-r from-blue-600/10 to-purple-600/10 */}
       {!result && (
-        <div className="w-full mt-20 max-w-xl backdrop-blur-lg bg-linear-to-r from-blue-600/10 to-purple-600/10 border border-white/20 p-6 rounded-2xl shadow-xl text-center">
-          <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-xl p-6 cursor-pointer hover:border-blue-400 transition">
-            <p className="mb-2">📂Upload Resume (PDF)</p>
-            <p className="text-sm text-gray-300">or click to select file</p>
+        <div className={`w-full mt-20 max-w-xl backdrop-blur-lg  bg-linear-to-r from-blue-600/10 to-purple-600/10 border border-white/20 p-6 rounded-2xl shadow-xl text-center`}>
+          <label className={`flex flex-col items-center justify-center border-2 border-dashed ${mode?"border-gray-400":"border-gray-950"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}>
+            <p className={`${mode?'text-gray-200':'text-black font-serif'} mb-2`}>📂Upload Resume (PDF)</p>
+            <p className={`text-sm ${mode?'text-gray-200':'text-black font-serif'}`}>or click to select file</p>
 
             <input
               type="file"
@@ -87,7 +88,7 @@ export default function ResumeAnalyzer() {
           )}
           <textarea
             placeholder="Paste Job Description here..."
-            className="w-full mt-4 text-white border-2 border-dotted border-gray-400 rounded-xl p-6 cursor-pointer hover:border-blue-400 transition"
+            className={`w-full mt-4  border-2 border-dotted ${!mode?"border-black font-bold text-black font-serif":"border-gray-400 text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
