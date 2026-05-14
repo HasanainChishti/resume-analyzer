@@ -138,8 +138,10 @@ ${jobDesc}
 // 🚀 MAIN ROUTE
 app.post("/upload", upload.single("resume"), async (req, res) => {
   try {
+    console.log("yes worked");
     const dataBuffer = fs.readFileSync(req.file.path);
     const data = await pdf(dataBuffer);
+console.log("yes worked 2");
 
     const resumeText = data.text.toLowerCase();
     const jobDesc = req.body.jobDesc ? req.body.jobDesc.toLowerCase() : "";

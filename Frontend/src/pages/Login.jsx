@@ -26,6 +26,7 @@ console.log(login);
          })
          const data =  await res.json();
          console.log(data);
+           navigate("/History")
          
   }
   const handleLogin = async (e)=>{
