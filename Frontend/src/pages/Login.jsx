@@ -13,7 +13,7 @@ console.log(login);
   const handleSignup =async  (e)=>{
           e.preventDefault();
            console.log("yes ",e);
-       const res =await fetch("http://localhost:5000/signup",{
+       const res =await fetch("https://resume-analyzer-9avl.onrender.com/signup",{
              method:"POST",
              headers:{
               "content-type":"application/json"
@@ -30,7 +30,7 @@ console.log(login);
   }
   const handleLogin = async (e)=>{
          e.preventDefault();
-     const res = await fetch("http://localhost:5000/login",{
+     const res = await fetch("https://resume-analyzer-9avl.onrender.com/login",{
        method:"POST",
        headers:{
         "content-type":"application/json"

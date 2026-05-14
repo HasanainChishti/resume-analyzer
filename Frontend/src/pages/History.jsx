@@ -13,7 +13,7 @@ const History = () => {
   useEffect(() => {
     async function getHistori() {
       try {
-        const res = await fetch("http://localhost:5000/history");
+        const res = await fetch("https://resume-analyzer-9avl.onrender.com/history");
         const data = await res.json();
         setHistory(data);
       } catch (error) {
@@ -31,7 +31,7 @@ const History = () => {
   },[])
   const handleDelete = async (id)=>{
          try {
-            await fetch(`http://localhost:5173/history/${id}`,{
+            await fetch(`https://resume-analyzer-9avl.onrender.com/${id}`,{
                 method:"DELETE"
                 })
                 const filter = history.filter((list)=> list._id !== id)
