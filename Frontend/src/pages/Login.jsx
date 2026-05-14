@@ -60,17 +60,17 @@ console.log(login);
         <input
           type="text"
           id="name"
-          value={name || "Enter Name"}
+          value={name}
           className={`shadow p-2 rounded ${theme.mode?"text-gray-300 ":"text-gray-950"} outline-black`}
-          // placeholder="Enter Name"
+          placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
         />
         {/* <label htmlFor=""></label> */}
         <input
           type="text"
           id="Email"
-          value={email ||"Enter Email" }
-          // placeholder=" Eneter Email"
+          value={email }
+          placeholder=" Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -79,9 +79,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          // placeholder="Enter password"
+          placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password ||"Enter password" }
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono p-2 rounded shadow">signup</button>
@@ -98,8 +98,8 @@ console.log(login);
         <input
           type="text"
           id="Email"
-          value={email || "Enter Email"}
-          // placeholder="Eneter Email"
+          value={email }
+          placeholder="Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -108,9 +108,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          // placeholder="Enter password"
+          placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password || "Enter password"}
+          value={password }
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono px-2 py-2 rounded shadow">Login</button>

@@ -28,7 +28,7 @@ export default function ResumeAnalyzer() {
     try {
       console.log("sahi he");
 
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData);
+      const res = await axios.post("http://localhost:5000/upload", formData);
      
 
       // backend response set karo
