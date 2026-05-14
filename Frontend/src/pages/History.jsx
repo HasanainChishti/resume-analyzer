@@ -13,7 +13,7 @@ const History = () => {
   useEffect(() => {
     async function getHistori() {
       try {
-        const res = await fetch("https://resume-analyzer-9avl.onrender.com/history");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/history`);
         const data = await res.json();
         setHistory(data);
       } catch (error) {
@@ -31,7 +31,7 @@ const History = () => {
   },[])
   const handleDelete = async (id)=>{
          try {
-            await fetch(`https://resume-analyzer-9avl.onrender.com/${id}`,{
+            await fetch(`${import.meta.env.VITE_API_URL}/${id}`,{
                 method:"DELETE"
                 })
                 const filter = history.filter((list)=> list._id !== id)
@@ -114,88 +114,4 @@ const History = () => {
   );
 };
 export default History;
-// import { useEffect, useState } from "react";
 
-// const History = () => {
-//   const [history, setHistory] = useState([]);
-//   const [selected, setSelected] = useState(null);
-
-//   useEffect(() => {
-//     fetch("http://localhost:5000/history")
-//       .then(res => res.json())
-//       .then(data => setHistory(data));
-//   }, []);
-
-//   return (
-//     <div className="flex gap-6 p-6">
-
-//       {/* LEFT LIST */}
-//       <div className="w-[35%] bg-white/10 p-4 rounded-xl">
-//         <h2 className="text-blue-400 mb-3">📜 History</h2>
-
-//         {history.map((item) => (
-//           <div
-//             key={item._id}
-//             onClick={() => setSelected(item)}
-//             className="p-3 mb-2 rounded-lg cursor-pointer hover:bg-white/20 transition"
-//           >
-//             <p className="text-sm">{item.resumeName}</p>
-//             <p className="text-xs text-gray-400">{item.score}%</p>
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* RIGHT DETAIL */}
-//       <div className="w-[65%] bg-white/10 p-6 rounded-xl">
-//         {selected ? (
-//           <>
-//             <h2 className="text-xl text-blue-400 mb-4">
-//               📄 {selected.resumeName}
-//             </h2>
-
-//             <p className="mb-2">Score: {selected.score}%</p>
-
-//             {/* Found */}
-//             <div className="mb-3">
-//               <h3 className="text-green-400">Found Skills</h3>
-//               <div className="flex flex-wrap gap-2">
-//                 {selected.foundSkills.map((s, i) => (
-//                   <span key={i} className="bg-green-500/20 px-2 rounded">
-//                     {s}
-//                   </span>
-//                 ))}
-//               </div>
-//             </div>
-
-//             {/* Missing */}
-//             <div className="mb-3">
-//               <h3 className="text-red-400">Missing Skills</h3>
-//               <div className="flex flex-wrap gap-2">
-//                 {selected.missingSkills.map((s, i) => (
-//                   <span key={i} className="bg-red-500/20 px-2 rounded">
-//                     {s}
-//                   </span>
-//                 ))}
-//               </div>
-//             </div>
-
-//             {/* Suggestions */}
-//             <div>
-//               <h3 className="text-blue-400">AI Suggestions</h3>
-//               {selected.suggestions.map((s, i) => (
-//                 <p key={i} className="text-sm">💡 {s}</p>
-//               ))}
-//             </div>
-//           </>
-//         ) : (
-//           <p className="text-gray-400 text-center">
-//             Select a history item
-//           </p>
-//         )}
-//       </div>
-
-//     </div>
-//   );
-// };
-
-// export default History;

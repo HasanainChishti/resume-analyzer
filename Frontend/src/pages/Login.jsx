@@ -13,7 +13,7 @@ console.log(login);
   const handleSignup =async  (e)=>{
           e.preventDefault();
            console.log("yes ",e);
-       const res =await fetch("https://resume-analyzer-9avl.onrender.com/signup",{
+       const res =await fetch(`${import.meta.env.VITE_API_URL}/signup`,{
              method:"POST",
              headers:{
               "content-type":"application/json"
@@ -30,7 +30,7 @@ console.log(login);
   }
   const handleLogin = async (e)=>{
          e.preventDefault();
-     const res = await fetch("https://resume-analyzer-9avl.onrender.com/login",{
+     const res = await fetch(`${import.meta.env.VITE_API_URL}/login`,{
        method:"POST",
        headers:{
         "content-type":"application/json"
