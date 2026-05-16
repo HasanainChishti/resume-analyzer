@@ -138,10 +138,8 @@ ${jobDesc}
 // 🚀 MAIN ROUTE
 app.post("/upload", upload.single("resume"), async (req, res) => {
   try {
-    console.log("yes worked");
     const dataBuffer = fs.readFileSync(req.file.path);
     const data = await pdf(dataBuffer);
-console.log("yes worked 2");
 
     const resumeText = data.text.toLowerCase();
     const jobDesc = req.body.jobDesc ? req.body.jobDesc.toLowerCase() : "";
@@ -291,8 +289,7 @@ app.post("/login", async (req, res) => {
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
-const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server started on port 5000");
 });

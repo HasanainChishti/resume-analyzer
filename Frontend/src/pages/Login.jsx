@@ -13,7 +13,7 @@ console.log(login);
   const handleSignup =async  (e)=>{
           e.preventDefault();
            console.log("yes ",e);
-       const res =await fetch(`${import.meta.env.VITE_API_URL}/signup`,{
+       const res =await fetch("http://localhost:5000/signup",{
              method:"POST",
              headers:{
               "content-type":"application/json"
@@ -26,12 +26,11 @@ console.log(login);
          })
          const data =  await res.json();
          console.log(data);
-           navigate("/History")
          
   }
   const handleLogin = async (e)=>{
          e.preventDefault();
-     const res = await fetch(`${import.meta.env.VITE_API_URL}/login`,{
+     const res = await fetch("http://localhost:5000/login",{
        method:"POST",
        headers:{
         "content-type":"application/json"
@@ -61,17 +60,17 @@ console.log(login);
         <input
           type="text"
           id="name"
-          value={name}
+          value={name || "Enter Name"}
           className={`shadow p-2 rounded ${theme.mode?"text-gray-300 ":"text-gray-950"} outline-black`}
-          placeholder="Enter Name"
+          // placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
         />
         {/* <label htmlFor=""></label> */}
         <input
           type="text"
           id="Email"
-          value={email }
-          placeholder=" Eneter Email"
+          value={email ||"Enter Email" }
+          // placeholder=" Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -80,9 +79,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          placeholder="Enter password"
+          // placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password}
+          value={password ||"Enter password" }
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono p-2 rounded shadow">signup</button>
@@ -99,8 +98,8 @@ console.log(login);
         <input
           type="text"
           id="Email"
-          value={email }
-          placeholder="Eneter Email"
+          value={email || "Enter Email"}
+          // placeholder="Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -109,9 +108,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          placeholder="Enter password"
+          // placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password }
+          value={password || "Enter password"}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono px-2 py-2 rounded shadow">Login</button>

@@ -73,7 +73,7 @@ console.log("mode",mode);
         <div className={`w-full mt-20 max-w-xl backdrop-blur-lg  bg-linear-to-r from-blue-600/10 to-purple-600/10 border border-white/20 p-6 rounded-2xl shadow-xl text-center`}>
           <label className={`flex flex-col items-center justify-center border-2 border-dashed ${mode?"border-gray-400":"border-gray-950"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}>
             <p className={`${mode?'text-gray-200':'text-black font-serif'} mb-2`}>📂Upload Resume (PDF)</p>
-            <p className={`text-sm ${mode?'text-gray-200':'text-black font-serif'}`}>click to select file</p>
+            <p className={`text-sm ${mode?'text-gray-200':'text-black font-serif'}`}>or click to select file</p>
 
             <input
               type="file"
@@ -88,7 +88,7 @@ console.log("mode",mode);
           )}
           <textarea
             placeholder="Paste Job Description here..."
-            className={`w-full mt-4  border-2 border-dotted ${!mode?"border-black font-bold text-black font-serif":"border-gray-400 text-white"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
+            className={`w-full mt-4  border-2 border-dotted ${!mode?"border-black font-bold text-black font-serif":"border-gray-400 text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
