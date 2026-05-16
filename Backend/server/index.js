@@ -13,6 +13,8 @@ const Analysis = require("../Model/Analysis.js");
 const user = require("../Model/User.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
+const path = require("path");
+const fs = require("fs");
 app.use(cors());
 app.use(express.json());
 
@@ -23,13 +25,29 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("mongodb connected"))
   .catch((error) => console.log(error));
+
+  const uploadsPath = path.join(process.cwd(), "uploads");
+
+if (!fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath);
+}
 // 📁 multer config
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => cb(null, "uploads/"),
+//   filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+// });
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+  destination: function (req, file, cb) {
+    cb(null, uploadsPath);
+  },
+
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 const upload = multer({ storage });
-
 // 🤖 AI FUNCTION (clean structured output)
 async function getAISuggestions(resumeText, jobDesc) {
   try {
