@@ -17,6 +17,8 @@ export default function ResumeAnalyzer() {
    const theme = useContext(themeContext)
    const mode =theme.mode;
   const handleAnalyze = async () => {
+    
+    
     if (!file) return;
 
     setLoading(true);
@@ -24,7 +26,19 @@ export default function ResumeAnalyzer() {
     const formData = new FormData();
     formData.append("resume", file);
     formData.append("jobDesc", jobDesc);
+try{
+ console.log(file);
 
+console.log(file.name);
+console.log(file.type);
+console.log(file.size);
+
+for (let pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}
+}catch(err){
+   console.log(err);
+}
     try {
       console.log("sahi he");
 
@@ -42,7 +56,9 @@ export default function ResumeAnalyzer() {
         skills: res.data.requiredSkillsAI,
       });
     } catch (error) {
+      console.log(error?.response?.data);
       console.log(error);
+      
       alert("Error analyzing resume");
     }
 
