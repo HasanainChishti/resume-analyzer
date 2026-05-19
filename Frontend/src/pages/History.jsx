@@ -5,34 +5,43 @@ import ThemeContext from "../components/ThemeContext";
 const History = () => {
   const [history, setHistory] = useState([]);
   const [selected, setSelected] = useState();
-  console.log(history);
+  console.log(history,"historyh");
    const token = localStorage.getItem('token');
    const navigate = useNavigate();
-   if(!token)
-    navigate('/signup')
+  
   useEffect(() => {
     async function getHistori() {
       try {
-        const res = await fetch("http://localhost:5000/history");
+        const res = await fetch("http://localhost:5000/history", {
+    headers: {
+      authorization: token,
+    },
+  });
         const data = await res.json();
+        console.log(data,"data is");
+        
         setHistory(data);
       } catch (error) {
         console.log(error);
       }
     }
     getHistori();
-  }, []);
+  }, [token]);
   const theme = useContext(ThemeContext)
   console.log("mode in history.jsx",theme.mode);
   
-  useEffect(()=>{``
+  useEffect(()=>{
     const exist = localStorage.getItem("token");
-
+         if(!exist)
+    navigate('/signup')
   },[])
   const handleDelete = async (id)=>{
          try {
             await fetch(`http://localhost:5173/history/${id}`,{
-                method:"DELETE"
+                method:"DELETE",
+                headers:{
+                  authorization:token,
+                }
                 })
                 const filter = history.filter((list)=> list._id !== id)
                 setHistory(filter);
@@ -40,13 +49,14 @@ const History = () => {
             console.log(error);
             
          }
+        
   }
   return (
     // bg-linear-to-r from-blue-600/10 to-purple-600/10
-<div className={` p-6 flex gap-5   ${!theme.mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`} >
+<div className={` p-6 flex gap-5  min-h-screen ${!theme.mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`} >
       <div className="bg-blue-600/10  flex flex-col gap-2 w-[30%] p-4 shadow">
         <h2 className="text-xl text-blue-600 ">📜 History</h2>
-        {history.map((list) => (
+        {history?.map((list) => (
           <div
             className={`border-s-2 flex flex-col rounded gap-2  shadow ${theme.mode?"bg-purple-600/10 text-gray-400":" bg-linear-to-r from-blue-600/10 to-purple-600/10"} text-mono p-2`}
             onClick={() => setSelected(list)}
@@ -61,7 +71,8 @@ const History = () => {
             </div>
             
           </div>
-        ))}
+        ))
+        }
       </div>
      <div className="bg-linear-to-r from-blue-600/10 to-purple-600/10 flex flex-col gap-3 w-[65%] p-6 shadow">
       {selected ? (

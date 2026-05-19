@@ -41,8 +41,13 @@ for (let pair of formData.entries()) {
 }
     try {
       console.log("sahi he");
-
-      const res = await axios.post("https://resume-analyzer-9avl.onrender.com/upload", formData);
+      const token =  localStorage.getItem("token");
+      const res = await axios.post("https://resume-analyzer-9avl.onrender.com/upload", formData, {
+    headers: {
+      authorization: token,
+    },
+  }
+);
      
 
       // backend response set karo
@@ -100,11 +105,11 @@ console.log("mode",mode);
           </label>
 
           {file && (
-            <p className="mt-3 text-sm text-gray-300">Selected: {file.name}</p>
+            <p className={`mt-3 text-sm ${mode?"text-gray-300":"text-gray-950"} `}>Selected: {file.name}</p>
           )}
           <textarea
             placeholder="Paste Job Description here..."
-            className={`w-full mt-4  border-2 border-dotted ${!mode?"border-black font-bold text-black font-serif":"border-gray-400 text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
+            className={`w-full mt-4  border-2 border-dotted ${mode?"font-semibold text-gray-300 font-serif":" font-semibold border-gray-950 text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
@@ -136,8 +141,9 @@ console.log("mode",mode);
 
       {/* Result Section */}
       {result && !loading && (
-        <div className=" flex w-full mx-auto gap-6">
-          <div className="uploadBox flex justify-center  align-middle flex-col bg-white/10 p-6 rounded-2xl w-[45%] h-80 sticky z-10">
+        // ${!mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}
+        <div className={` flex w-full mx-auto gap-6 ${!mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`}>
+          <div className={`uploadBox flex justify-center  align-middle flex-col shadow bg-blue-600/10 p-6 rounded-2xl w-[45%] h-80 sticky z-10`}>
             <label className="flex flex-col border-2 border-dashed p-6 items-center rounded-2xl ">
               <p>Drag & Drop</p>
               <p className="text-sm ">click to upload</p>
@@ -161,7 +167,7 @@ console.log("mode",mode);
               onChange={(e) => setJobDesc(e.target.value)}
             ></textarea>
           </div>
-          <div className="resultBox flex flex-col bg-white/10 rounded-2xl p-6 ">
+          <div className="resultBox flex flex-col bg-linear-to-r from-blue-600/10 to-purple-600/10 rounded-2xl p-6 ">
             <h2 className="mb-4 text-mono font-semibold text-blue-400 ">
               🤖 AI Suggestions
             </h2>

@@ -49,9 +49,9 @@ console.log(login);
   console.log("theme in history",theme.mode);
   
   return (
-    <div className={`min-h-screen flex justify-center items-center align-middle  ${theme.mode?"bg-linear-to-r from-gray-900 to-gray-950":"bg-linear-to-r from-blue-600/10 to-purple-600/10"} `}>
+    <div className={`min-h-screen flex justify-center items-center align-middle  ${theme.mode?"bg-linear-to-r from-gray-800 to-gray-950":"bg-linear-to-r from-blue-600/10 to-purple-600/10"} `}>
             {  
-           login?(<div  className=") flex flex-col gap-3 shadow w-80 h-85 p-4 rounded  bg-linear-to-r from-blue-600/25 to-purple-600/25">
+           login?(<div  className={` flex flex-col gap-3 shadow w-80 h-85 p-4 rounded  bg-linear-to-r from-blue-600/25 to-purple-600/25`}>
                <h2 className={`text-xl text-center ${theme.mode&&"text-gray-200"} font-bold`}>Signup</h2>
       <form onSubmit={(e)=>handleSignup(e)} className={` flex flex-col gap-3 ${theme.mode?"text-gray-200 font-serif text-mono":"text-black font-serif"} rounded `}>
 
@@ -60,17 +60,17 @@ console.log(login);
         <input
           type="text"
           id="name"
-          value={name || "Enter Name"}
+          value={name }
           className={`shadow p-2 rounded ${theme.mode?"text-gray-300 ":"text-gray-950"} outline-black`}
-          // placeholder="Enter Name"
+          placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
         />
         {/* <label htmlFor=""></label> */}
         <input
           type="text"
           id="Email"
-          value={email ||"Enter Email" }
-          // placeholder=" Eneter Email"
+          value={email }
+          placeholder=" Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -79,9 +79,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          // placeholder="Enter password"
+          placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password ||"Enter password" }
+          value={password }
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono p-2 rounded shadow">signup</button>
@@ -98,8 +98,8 @@ console.log(login);
         <input
           type="text"
           id="Email"
-          value={email || "Enter Email"}
-          // placeholder="Eneter Email"
+          value={email }
+          placeholder="Eneter Email"
           className="shadow p-2 rounded"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -108,9 +108,9 @@ console.log(login);
           type="text"
           name=""
           id="password"
-          // placeholder="Enter password"
+          placeholder="Enter password"
            className="shadow p-2 rounded"
-          value={password || "Enter password"}
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono px-2 py-2 rounded shadow">Login</button>
