@@ -4,7 +4,7 @@ import Score from "./Score.jsx";
 import axios from "axios";
 import { Link } from "react-router";
 import themeContext from "./ThemeContext.jsx";
-
+import AnalyzeResumeResult from "./AnalyzeResumeResult.jsx"
 export default function ResumeAnalyzer() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
@@ -73,7 +73,7 @@ for (let pair of formData.entries()) {
 console.log("mode",mode);
 
   return (
-    <div className={`min-h-screen ${mode?"bg-linear-to-br from-gray-900 to-gray-800":"bg-linear-to-br from-purple-600/10 to-blue-600/10 "}  flex flex-col items-center shadow pt-0 text-white`}>
+    <div className={`min-h-screen ${mode?"bg-linear-to-br from-gray-900 to-gray-800":"bg-linear-to-r from-blue-600/10 to-purple-600/10 "}  flex flex-col items-center shadow pt-0 text-white`}>
       {/* Title */}
       {
         console.log(mode,"mode is")
@@ -109,7 +109,7 @@ console.log("mode",mode);
           )}
           <textarea
             placeholder="Paste Job Description here..."
-            className={`w-full mt-4  border-2 border-dotted ${mode?"font-semibold text-gray-300 font-serif":" font-semibold border-gray-950 text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
+            className={`w-full mt-4  border-2 border-dotted ${mode?"font-semibold placeholder:text-gray-300 font-serif":" font-semibold placeholder:border-gray-950 font-serif text-black"} rounded-xl p-6 cursor-pointer hover:border-blue-400 transition`}
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
@@ -142,88 +142,7 @@ console.log("mode",mode);
       {/* Result Section */}
       {result && !loading && (
         // ${!mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}
-        <div className={` flex w-full mx-auto gap-6 ${!mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`}>
-          <div className={`uploadBox flex justify-center  align-middle flex-col shadow bg-blue-600/10 p-6 rounded-2xl w-[45%] h-80 sticky z-10`}>
-            <label className="flex flex-col border-2 border-dashed p-6 items-center rounded-2xl ">
-              <p>Drag & Drop</p>
-              <p className="text-sm ">click to upload</p>
-              <input
-                type="file"
-                className=" hidden "
-                onChange={(e) => setFile(e.targer.files[0])}
-              />
-            </label>
-            {file && (
-              <p className="mt-3 text-sm text-center text-gray-300">
-                {file.name}
-              </p>
-            )}
-            <textarea
-              name=""
-              id=""
-              className="p-6 mt-4 rounded-2xl border-2 border-dotted  "
-              placeholder="Enter job description Here"
-              value={jobDesc}
-              onChange={(e) => setJobDesc(e.target.value)}
-            ></textarea>
-          </div>
-          <div className="resultBox flex flex-col bg-linear-to-r from-blue-600/10 to-purple-600/10 rounded-2xl p-6 ">
-            <h2 className="mb-4 text-mono font-semibold text-blue-400 ">
-              🤖 AI Suggestions
-            </h2>
-            <div className="flex bg-linear-to-r from-blue-600/10 to-purple-600/10 items-center justify-center ">
-              <div className="relative mt-3">
-                <Score score={result.score} />
-              </div>
-            </div>
-            <div className="  flex flex-col gap-2 bg-linear-to-r from-blue-600/10 to-purple-600/10 p-4">
-              <h2 className="text-blue-400 font-bold">Required Skills:</h2>
-              <div className="  flex flex-wrap gap-2">
-                {result?.skills?.map((skill, index) => (
-                  <div className="p-2 shadow flex text-mono">
-                    <span className="text-lg">💡</span>
-                    <p className="text-sm">[{skill}]</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="  flex flex-col gap-2 bg-linear-to-r from-blue-600/10 to-purple-600/10 p-4">
-              <h2 className="text-blue-400 font-bold">Found Skills:</h2>
-              <div className="flex gap">
-                <div className="  flex flex-wrap gap-2">
-                  {result?.found?.map((skill, index) => (
-                    <div className="p-2 shadow flex text-mono">
-                      <span className="text-lg">💡</span>
-                      <p className="text-sm">[{skill}]</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="  flex flex-col gap-2 bg-linear-to-r from-blue-600/10 to-purple-600/10 p-4">
-              <h2 className="text-blue-400 font-bold">Missing Skills:</h2>
-              <div className="  flex flex-wrap gap-2">
-                {result?.missing?.map((skill, index) => (
-                  <div className="p-2 shadow flex text-mono">
-                    <span className="text-lg">💡</span>
-                    <p className="text-sm">[{skill}]</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className=" p-4 bg-linear-to-r from-blue-600/10 to-purple-600/10 flex flex-col gap-2">
-              <h2 className="text-blue-400 font-bold">Improving Suggetion:</h2>
-              <div className="flex flex-col gap-2">
-                {result.aiSuggestions.map((Suggestions, index) => (
-                  <div className="p-2 shadow flex text-mono">
-                    <span className="text-lg">💡</span>
-                    <p className="text-sm">{Suggestions}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+            <AnalyzeResumeResult file={file} jobDesc={jobDesc} result={result}></AnalyzeResumeResult>
       )}
     </div>
   );

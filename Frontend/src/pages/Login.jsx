@@ -61,7 +61,7 @@ console.log(login);
           type="text"
           id="name"
           value={name }
-          className={`shadow p-2 rounded ${theme.mode?"text-gray-300 ":"text-gray-950"} outline-black`}
+          className={`shadow p-2 rounded  ${theme.mode?"placeholder-gray-400 font-mono ":"placeholder-gray-500 font-mono"} outline-black`}
           placeholder="Enter Name"
           onChange={(e) => setName(e.target.value)}
         />
@@ -70,8 +70,8 @@ console.log(login);
           type="text"
           id="Email"
           value={email }
-          placeholder=" Eneter Email"
-          className="shadow p-2 rounded"
+          placeholder="Enter Email"
+          className={`shadow p-2 rounded ${theme.mode?"placeholder-gray-400  font-mono":"placeholder-gray-500 font-mono"}`}
           onChange={(e) => setEmail(e.target.value)}
         />
         {/* <label htmlFor=""></label> */}
@@ -80,7 +80,7 @@ console.log(login);
           name=""
           id="password"
           placeholder="Enter password"
-           className="shadow p-2 rounded"
+           className={`shadow p-2 rounded ${theme.mode?"placeholder-gray-400 font-mono ":"placeholder-gray-500 font-mono"}`}
           value={password }
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -89,7 +89,7 @@ console.log(login);
       </form>
        <p className={`${theme.mode?"text-gray-300 font-serif text-sm":"text-gray-950 font-serif text-sm"}`}>already signup ? <button className={` ${theme.mode?"text-gray-300":"text-gray-700"} hover:border-b-2`} onClick={()=>setLogin(!login)}>Login</button></p>
       </div>):(
-        <div  className=" flex flex-col gap-3 shadow w-80 h-65 p-4 rounded  bg-linear-to-r from-blue-600/10 to-purple-600/10">
+        <div  className=" flex flex-col gap-3 shadow w-80 h-65 p-4 rounded bg-linear-to-r from-blue-600/25 to-purple-600/25">
                <h2 className="text-xl text-center font-bold">Login</h2>
       <form onSubmit={(e)=>handleLogin(e)} className=" flex flex-col gap-3  rounded ">
 
@@ -100,7 +100,7 @@ console.log(login);
           id="Email"
           value={email }
           placeholder="Eneter Email"
-          className="shadow p-2 rounded"
+          className={`shadow p-2 rounded font-mono ${theme.mode?"placeholder-gray-400 ":"placeholder-gray-500"}`}
           onChange={(e) => setEmail(e.target.value)}
         />
         {/* <label htmlFor=""></label> */}
@@ -109,14 +109,14 @@ console.log(login);
           name=""
           id="password"
           placeholder="Enter password"
-           className="shadow p-2 rounded"
+           className={`shadow p-2 rounded font-mono ${theme.mode?"placeholder-gray-400 ":"placeholder-gray-500"}`}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="text-white bg-gray-950 text-mono px-2 py-2 rounded shadow">Login</button>
-       
+        
       </form>
-       <p className="text-gray-600">new user ? <button className="text-gray-700 hover:border-b-2" onClick={()=>setLogin(!login)}>signup</button></p>
+       <p className={`${theme.mode?"text-gray-400":"text-gray-500"} font-mono`}>newUser? <button className={`${theme.mode?"text-gray-200":"text-gray-700"}  font-mono hover:border-b-2`} onClick={()=>setLogin(!login)}>signup</button></p>
       </div>
       )
 }

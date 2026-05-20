@@ -16,7 +16,7 @@ const app = express();
 const Analysis = require("../Model/Analysis.js");
 const user = require("../Model/User.js");
 const auth = require("../Middleware/auth.js");
-const { log } = require("console");
+
 app.use(cors());
 app.use(express.json());
 
@@ -150,7 +150,7 @@ async function getAISuggestions(resumeText, jobDesc) {
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash",
     });
-    const prompt = `
+const prompt = `
 You are a Resume Analyzer AI.
 
 Analyze the resume and the job description carefully.
@@ -166,7 +166,7 @@ IMPORTANT RULES:
 
 - Return clean skill names only.
   Example:
-  Correct answer:
+  Correct:
   React.js
   JavaScript
   HTML
@@ -176,17 +176,11 @@ IMPORTANT RULES:
   Node.js
   Express.js
   MongoDB
-  Mysql
-  etc...
-  
 
-  Wrong answer:
+  Wrong:
   Using React
   Routing using React Router
   State Management (Redux)
-  Design, build, and maintain client-side (frontend) architecture
-  Design, build, and maintain server-side (backend) architecture
-  database managemet etc...
 
 - If the JD is for React Developer, include common React skills like:
   React.js, JavaScript, HTML, CSS, Redux, React Router, API Integration, Tailwind CSS
