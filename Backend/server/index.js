@@ -309,6 +309,8 @@ app.post("/upload",auth, upload.single("resume"), async (req, res) => {
 
 // 📜 history
 app.get("/history", auth , async (req, res) => {
+  console.log("user",req.user);
+  
   try {
     const data = await Analysis.find({user:req.user.id}).sort({ createdAt: -1 });
     console.log(data,"data is in ");

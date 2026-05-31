@@ -12,7 +12,7 @@ const History = () => {
   useEffect(() => {
     async function getHistori() {
       try {
-        const res = await fetch("http://localhost:5000/history", {
+        const res = await fetch("https://resume-analyzer-9avl.onrender.com/history", {
     headers: {
       authorization: token,
     },
@@ -37,7 +37,7 @@ const History = () => {
   },[])
   const handleDelete = async (id)=>{
          try {
-            await fetch(`http://localhost:5173/history/${id}`,{
+            await fetch(`https://resume-analyzer-9avl.onrender.com/${id}`,{
                 method:"DELETE",
                 headers:{
                   authorization:token,
