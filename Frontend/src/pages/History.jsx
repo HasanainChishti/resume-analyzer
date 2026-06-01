@@ -53,15 +53,16 @@ const History = () => {
   }
   return (
     // bg-linear-to-r from-blue-600/10 to-purple-600/10
-<div className={` p-6 flex gap-5  min-h-screen ${!theme.mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`} >
-      <div className="bg-blue-600/10  flex flex-col gap-2 w-[30%] p-4 shadow">
+<div className={` p-6 flex flex-col gap-5 md:flex-col lg:flex-row min-h-screen ${!theme.mode?"bg-linear-to-r from-blue-600/10 to-purple-600/10":"bg-linear-to-br from-gray-900 to-gray-800"}`} >
+      <div className="  bg-blue-600/10  lg:w-[30%] p-4 shadow">
         <h2 className="text-xl text-blue-600 ">📜 History</h2>
-        {history?.map((list) => (
+        <div className="flex flex-row overflow-x-scroll gap-5 md:w-full   lg:flex-col lg:w-full ">
+          {history?.map((list) => (
           <div
-            className={`border-s-2 flex flex-col rounded gap-2  shadow ${theme.mode?"bg-purple-600/10 text-gray-400":" bg-linear-to-r from-blue-600/10 to-purple-600/10"} text-mono p-2`}
+            className={`border-s-2 flex flex-col  rounded gap-2  shadow ${theme.mode?"bg-purple-600/10 text-gray-400":" bg-linear-to-r from-blue-600/10 to-purple-600/10"} text-mono p-2`}
             onClick={() => setSelected(list)}
           >
-            <p className="">resumeName:{list.resumeName}</p>
+            <p className="">File:{list.resumeName}</p>
             <div className="flex justify-between">
                 <p className="">
               Score:
@@ -73,8 +74,10 @@ const History = () => {
           </div>
         ))
         }
+        </div>
+        
       </div>
-     <div className="bg-linear-to-r from-blue-600/10 to-purple-600/10 flex flex-col gap-3 w-[65%] p-6 shadow">
+     <div className="bg-linear-to-r w-full from-blue-600/10 to-purple-600/10 flex flex-col gap-3 lg:w-[65%] p-6 shadow">
       {selected ? (
        <>
           <h2 className={`text-xl  ${theme.mode?"text-blue-400 ":"text-gray-950 font-serif "}  mb-4`}>
@@ -110,7 +113,7 @@ const History = () => {
               <h2 className="text-blue-400">Ai Suggestions</h2>
               <div className="flex flex-col gap-4">
                 {selected.suggestions.map((list, ind) => (
-                  <span className={`text-sm ${theme.mode?"bg-purple-600/10 text-blue-400":"bg-gray-200 "} p-2 rounded`}><span className="text-mono">💡</span>{list}</span>
+                  <span className={`text-sm ${theme.mode?"bg-purple-600/10 text-blue-400":"bg-gray-200 "} p-2 rounded w-auto lg:w-full`}><span className="text-mono">💡</span>{list}</span>
                 ))}
               </div>
             </div>
