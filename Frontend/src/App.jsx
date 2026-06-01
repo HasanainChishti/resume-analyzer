@@ -73,7 +73,7 @@ const App = () => {
           </nav>
 
         {
-                size&&<div className={`lg:hidden text-purple-400 flex flex-col  gap-3 justify-center items-center ${!mode ? "bg-linear-to-r from-blue-600/10 to-purple-600/10 shadow" : "bg-linear-to-br from-gray-900 to-gray-800"} h-50 w-full`}>
+                size?(<div className={`lg:hidden text-purple-400 flex flex-col  gap-3 justify-center items-center ${!mode ? "bg-linear-to-r from-blue-600/10 to-purple-600/10 shadow" : "bg-linear-to-br from-gray-900 to-gray-800"} h-50 w-full`}>
     <Link
                 to={"/"}
                 className="shadow p-2 rounded hover:bg-gray-800 font-serif "
@@ -106,7 +106,7 @@ const App = () => {
                   <span className="font-extrabold">🔆</span>
                 )}
               </button>
-                </div>
+                </div>):("")
 }
           <Routes>
             <Route path="/" element={<ResumeAnalyzer />}>
