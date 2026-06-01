@@ -9,7 +9,7 @@ const App = () => {
   const token = localStorage.getItem("token");
   console.log("token", token);
   const [mode, setMode] = useState(1);
-  const [size, setSize] = useState(1);
+  const [size, setSize] = useState(0);
   console.log("mode in app.jsx", mode);
 
   return (
