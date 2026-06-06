@@ -5,6 +5,7 @@ import { Route, Routes, BrowserRouter, useNavigate } from "react-router";
 import Login from "./pages/Login";
 import ThemeContext from "./components/ThemeContext";
 import { Link } from "react-router";
+import { FaBars, FaTimes } from "react-icons/fa";
 const App = () => {
   const token = localStorage.getItem("token");
   console.log("token", token);
@@ -58,15 +59,23 @@ const App = () => {
               </button>
             </div>
             {
-              size?( <div className="flex flex-row w-8 gap-1.5 lg:hidden cursor-pointer " onClick={()=>setSize(!size)}>
-              <div className="w-1 h-full rounded bg-white"></div>
-              <div className="w-1 h-full rounded bg-white"></div>
-              <div className="w-1 h-full rounded bg-white"></div>
-            </div>):( <div className="flex flex-col w-8 gap-1.5 lg:hidden cursor-pointer " onClick={()=>setSize(!size)}>
-              <div className="w-full h-1 rounded bg-white"></div>
-              <div className="w-full h-1 rounded bg-white"></div>
-              <div className="w-full h-1 rounded bg-white"></div>
-            </div>) 
+              size?(
+            //      <div className="flex flex-row w-8 gap-1.5 lg:hidden cursor-pointer " onClick={()=>setSize(!size)}>
+            //   <div className="w-1 h-full rounded bg-white"></div>
+            //   <div className="w-1 h-full rounded bg-white"></div>
+            //   <div className="w-1 h-full rounded bg-white"></div>
+            // </div>
+             <FaTimes className="lg:hidden text-white" size={24} onClick={()=>setSize(!size)} />
+            
+            )
+            :( 
+            // <div className="flex flex-col w-8 gap-1.5 lg:hidden cursor-pointer " onClick={()=>setSize(!size)}>
+            //   <div className="w-full h-1 rounded bg-white"></div>
+            //   <div className="w-full h-1 rounded bg-white"></div>
+            //   <div className="w-full h-1 rounded bg-white"></div>
+            // </div>
+           <FaBars className="lg:hidden text-white "  size={24} onClick={()=>setSize(!size)}/>
+            ) 
               
           
 }
